@@ -6,10 +6,9 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
+    - uses: actions/checkout@v2
     - name: Install rsync
       run: sudo apt install -y rsync git
-    - name: Check repo
-      run: ls -la /home/runner/work/liquidation-bot/liquidation-bot/
     - name: Create ssh folder
       run: mkdir /home/runner/.ssh
     - name: Writing private key
