@@ -1,0 +1,13 @@
+name: Deploy app
+
+on: [push]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Install rsync
+      run: apt install rsync
+    - name: check folder
+      run: ls -la /home/runner/
+    
