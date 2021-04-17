@@ -7,7 +7,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Install rsync
-      run: sudo apt install rsync
+      run: sudo apt install -y rsync git
+    - name: Check repo
+      run: ls -la /home/runner/work/liquidation-bot/
     - name: Create ssh folder
       run: mkdir /home/runner/.ssh
     - name: Writing private key
