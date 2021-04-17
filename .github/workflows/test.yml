@@ -7,7 +7,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Install rsync
-      run: apt install rsync
+      run: sudo apt install rsync
     - name: check folder
-      run: ls -la /home/runner/
+      run: sudo ls -la /home/runner/
     
