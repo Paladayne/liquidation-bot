@@ -18,7 +18,7 @@ jobs:
     - name: Transfering files by rsync
       run: 'rsync /home/runner/work/liquidation-bot/liquidation-bot/ ${{ secrets.REMOTE_USER }}@${{ secrets.REMOTE_HOST }}:${{ secrets.REMOTE_TARGET }} --rsh "ssh -p 22 -i /home/runner/.ssh/deploy_key -o StrictHostKeyChecking=no" --recursive -rltgoDzvO --delete'
     - name: Kill old process
-      run: 'ssh -i /home/runner/.ssh/deploy_key -o StrictHostKeyChecking=no ${{ secrets.REMOTE_USER }}@${{ secrets.REMOTE_HOST }} "sudo pkill node"'
+      run: 'ssh -i /home/runner/.ssh/deploy_key -o StrictHostKeyChecking=no ${{ secrets.REMOTE_USER }}@${{ secrets.REMOTE_HOST }} "sudo pkill node | true"'
     - name: Build deps
       run: 'ssh -i /home/runner/.ssh/deploy_key -o StrictHostKeyChecking=no ${{ secrets.REMOTE_USER }}@${{ secrets.REMOTE_HOST }} "cd /home/deploy/project/ && yarn"'
     - name: Run app in screen
