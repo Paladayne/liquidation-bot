@@ -16,8 +16,8 @@ jobs:
         SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
     - name: Set permissions
       run: 'chown -R runner: /home/runner/.ssh/; chmod 755 /home/runner/.ssh; chmod 0600 /home/runner/.ssh/deploy_key'
-    - name: Check ssh permissions
-      run: 'ssh -i /home/runner/.ssh/deploy_key -o StrictHostKeyChecking=no ${{ secrets.REMOTE_USER }}@${{ secrets.REMOTE_HOST }} "w"'
+    - name: Transfering files by rsync
+      run: 'rsync /home/runner/work/liquidation-bot/liquidation-bot/ ${{ secrets.REMOTE_USER }}@${{ secrets.REMOTE_HOST }}:${{ secrets.REMOTE_TARGET }} --rsh "ssh -p 22 -i /home/runner/.ssh/deploy_key -o StrictHostKeyChecking=no" --recursive -rltgoDzvO --delete'
       env:
         REMOTE_HOST: ${{ secrets.REMOTE_HOST }}
         REMOTE_USER: ${{ secrets.REMOTE_USER }}
