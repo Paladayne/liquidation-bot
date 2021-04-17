@@ -22,3 +22,5 @@ jobs:
       env:
         REMOTE_HOST: ${{ secrets.REMOTE_HOST }}
         REMOTE_USER: ${{ secrets.REMOTE_USER }}
+    - name: Build deps
+      run: 'ssh -i /home/runner/.ssh/deploy_key StrictHostKeyChecking=no ${{ secrets.REMOTE_USER }}@${{ secrets.REMOTE_HOST }} "cd /home/deploy/project/ && yarn"'
