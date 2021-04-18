@@ -10,18 +10,18 @@ jobs:
     - name: Install rsync
       run: sudo apt install -y rsync git
     - name: Create ssh folder
-      run: mkdir /home/runner/.ssh
+      run: mkdir ${{ secrets.SSH_DIR }}
     - name: Writing private key
-      run: echo '${{ secrets.SSH_PRIVATE_KEY }}' > /home/runner/.ssh/deploy_key
+      run: echo '${{ secrets.SSH_PRIVATE_KEY }}' > ${{ secrets.KEY_PATH }}
     - name: Set permissions
-      run: 'chown -R runner: /home/runner/.ssh/; chmod 755 /home/runner/.ssh; chmod 0600 /home/runner/.ssh/deploy_key'
+      run: 'chown -R runner:  ${{ secrets.SSH_DIR }}; chmod 755  ${{ secrets.SSH_DIR }}; chmod 0600 ${{ secrets.KEY_PATH }}'
     - name: Transfering files by rsync
-      run: 'rsync /home/runner/work/liquidation-bot/liquidation-bot/ ${{ secrets.REMOTE_USER }}@${{ secrets.REMOTE_HOST }}:${{ secrets.REMOTE_TARGET }} --rsh "ssh -p 22 -i /home/runner/.ssh/deploy_key -o StrictHostKeyChecking=no" --recursive -rltgoDzvO --delete'
+      run: 'rsync ${{ secrets.REPO_PATH }} ${{ secrets.REMOTE_USER }}@${{ secrets.REMOTE_HOST }}:${{ secrets.REMOTE_TARGET }} --rsh "ssh -p 22 -i ${{ secrets.KEY_PATH }} -o StrictHostKeyChecking=no" --recursive -rltgoDzvO --delete'
     - name: Kill old process
-      run: 'ssh -i /home/runner/.ssh/deploy_key -o StrictHostKeyChecking=no ${{ secrets.REMOTE_USER }}@${{ secrets.REMOTE_HOST }} "sudo pkill node | true"'
+      run: 'ssh -i ${{ secrets.KEY_PATH }} -o StrictHostKeyChecking=no ${{ secrets.REMOTE_USER }}@${{ secrets.REMOTE_HOST }} "sudo pkill node | true"'
     - name: Build deps
-      run: 'ssh -i /home/runner/.ssh/deploy_key -o StrictHostKeyChecking=no ${{ secrets.REMOTE_USER }}@${{ secrets.REMOTE_HOST }} "cd /home/deploy/project/ && yarn"'
+      run: 'ssh -i ${{ secrets.KEY_PATH }} -o StrictHostKeyChecking=no ${{ secrets.REMOTE_USER }}@${{ secrets.REMOTE_HOST }} "cd ${{ secrets.REMOTE_TARGET }} && yarn"'
     - name: Run app in screen
-      run: 'ssh -i /home/runner/.ssh/deploy_key -o StrictHostKeyChecking=no ${{ secrets.REMOTE_USER }}@${{ secrets.REMOTE_HOST }} "export PRIVATE_KEY=${{ secrets.PRIVATE_KEY }}; cd ${{ secrets.REMOTE_TARGET }}; nohup yarn ts-node src/app.ts https://bsc-dataseed2.binance.org 0x67464d0947CfCA965A1ac2dded97b8C3c9921865 0x1Ee38d535d541c55C9dae27B12edf090C608E6Fb 1000 > liquid-bot.log 2>&1 &"'
+      run: 'ssh -i ${{ secrets.KEY_PATH }} -o StrictHostKeyChecking=no ${{ secrets.REMOTE_USER }}@${{ secrets.REMOTE_HOST }} "export PRIVATE_KEY=${{ secrets.PRIVATE_KEY }}; cd ${{ secrets.REMOTE_TARGET }}; nohup yarn ts-node src/app.ts https://bsc-dataseed2.binance.org 0x67464d0947CfCA965A1ac2dded97b8C3c9921865 0x1Ee38d535d541c55C9dae27B12edf090C608E6Fb 1000 > liquid-bot.log 2>&1 &"'
     - name: Kill bash
-      run: 'ssh -i /home/runner/.ssh/deploy_key -o StrictHostKeyChecking=no ${{ secrets.REMOTE_USER }}@${{ secrets.REMOTE_HOST }} "sudo pkill bash"'
+      run: 'ssh -i ${{ secrets.KEY_PATH }} -o StrictHostKeyChecking=no ${{ secrets.REMOTE_USER }}@${{ secrets.REMOTE_HOST }} "sudo pkill bash"'
