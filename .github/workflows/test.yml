@@ -15,6 +15,8 @@ jobs:
       run: echo '${{ secrets.SSH_PRIVATE_KEY }}' > ${{ secrets.KEY_PATH }}
     - name: Set permissions
       run: 'chown -R runner:  ${{ secrets.SSH_DIR }}; chmod 755  ${{ secrets.SSH_DIR }}; chmod 0600 ${{ secrets.KEY_PATH }}'
+    - name: Check logs dir
+      run: 'ssh -i ${{ secrets.KEY_PATH }} -o StrictHostKeyChecking=no ${{ secrets.REMOTE_USER }}@${{ secrets.REMOTE_HOST }} "if [ ! -d ${{ secrets.LOGS_DIR }} ]; then mkdir ${{ secrets.LOGS_DIR }}; fi"'
     - name: Transfering files by rsync
       run: 'rsync ${{ secrets.REPO_PATH }} ${{ secrets.REMOTE_USER }}@${{ secrets.REMOTE_HOST }}:${{ secrets.REMOTE_TARGET }} --rsh "ssh -p 22 -i ${{ secrets.KEY_PATH }} -o StrictHostKeyChecking=no" --recursive -rltgoDzvO --delete'
     - name: Build deps
