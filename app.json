@@ -10,5 +10,8 @@
       "description": "Your private key",
       "value": ""
     }
-  }
+  },
+  "scripts": {
+    "start": "yarn ts-node src/app.ts",
+    "postinstall": "tsc"
 }
