@@ -5,9 +5,10 @@
   "logo": "https://cdn.rawgit.com/heroku/node-js-getting-started/main/public/node.svg",
   "keywords": ["node", "typescript", "heroku"],
   "image": "heroku/nodejs",
-  "ps": "worker",
   "env": {
     "NODE_ENV": "production",
+    "NPM_CONFIG_PRODUCTION": "false",
+    "YARN_PRODUCTION": "false",
     "PRIVATE_KEY": {
       "description": "Your private key",
       "value": ""
