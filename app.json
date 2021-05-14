@@ -4,7 +4,7 @@
   "repository": "https://github.com/Paladayne/liquidation-bot",
   "logo": "https://cdn.rawgit.com/heroku/node-js-getting-started/main/public/node.svg",
   "keywords": ["node", "typescript", "heroku"],
-  "image": "heroku/nodejs"
+  "image": "heroku/nodejs",
   "env": {
     "PRIVATE_KEY": {
       "description": "Your private key",
