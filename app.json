@@ -6,6 +6,7 @@
   "keywords": ["node", "typescript", "heroku"],
   "image": "heroku/nodejs",
   "env": {
+    "NODE_ENV": "production",
     "PRIVATE_KEY": {
       "description": "Your private key",
       "value": ""
