@@ -9,7 +9,7 @@
     "NODE_ENV": "production",
     "NPM_CONFIG_PRODUCTION": "false",
     "YARN_PRODUCTION": "false",
-    "NODE_OPTIONS": "--unhandled-rejections=stric",
+    "NODE_OPTIONS": "--unhandled-rejections=strict",
     "PRIVATE_KEY": {
       "description": "Your private key",
       "value": ""
