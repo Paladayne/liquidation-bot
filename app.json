@@ -13,5 +13,21 @@
       "description": "Your private key",
       "value": ""
     }
+    "NODE_ENDPOINT": {
+      "description": "Node endpoint",
+      "value": "https://bsc-dataseed2.binance.org"
+    }
+    "MULTICALL_ADDRESS": {
+      "description": "Multicall address",
+      "value": "0x168Ea9Cf517F29045098961423397dBC742cf264"
+    }
+    "ROUTER_ADDRESS": {
+      "description": "Router address",
+      "value": "0x8BB95a1E0D9556997Ab9B56Fc3DE62B7110a95E8"
+    }
+    "SLEEP_TIME": {
+      "description": "Sleep time",
+      "value": "250"
+    }
   }
 }
