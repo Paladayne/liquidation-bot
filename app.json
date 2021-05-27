@@ -4,7 +4,7 @@
   "repository": "https://github.com/Paladayne/liquidation-bot",
   "logo": "https://cdn.rawgit.com/heroku/node-js-getting-started/main/public/node.svg",
   "keywords": ["node", "typescript", "heroku"],
-  "image": "node:15-alpine",
+  "image": "heroku/nodejs",
   "env": {
     "NODE_ENV": "production",
     "NPM_CONFIG_PRODUCTION": "false",
@@ -32,6 +32,6 @@
     "START_BLOCK": {
       "description": "Start block",
       "value": "6503236"
-    } 
- }
+    }
+  }
 }
