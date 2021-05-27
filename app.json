@@ -19,15 +19,19 @@
     }
     "MULTICALL_ADDRESS": {
       "description": "Multicall address",
-      "value": "0x168Ea9Cf517F29045098961423397dBC742cf264"
+      "value": "0x8BB95a1E0D9556997Ab9B56Fc3DE62B7110a95E8"
     }
     "ROUTER_ADDRESS": {
       "description": "Router address",
-      "value": "0x8BB95a1E0D9556997Ab9B56Fc3DE62B7110a95E8"
+      "value": "0x168Ea9Cf517F29045098961423397dBC742cf264"
     }
     "SLEEP_TIME": {
       "description": "Sleep time",
       "value": "250"
     }
-  }
+    "START_BLOCK": {
+      "description": "Start block",
+      "value": "6503236"
+    } 
+ }
 }
